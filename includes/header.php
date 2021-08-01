@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!doctype html>
 <html lang="en">
 
@@ -14,4 +15,3 @@
 </head>
 
 <body>
-    <h1>Hello, world!</h1>
