@@ -3,6 +3,13 @@
 include_once "./includes/navbar.php";
 ?>
 
+<style>
+.reply_section,
+.sub_reply_section {
+    margin-left: 10px !important;
+}
+</style>
+
 <?php
 if(isset($_SESSION['status'])){
     ?>
