@@ -38,6 +38,9 @@ unset($_SESSION['status']);
                         <button id="add" type="button" class="btn btn-primary add_comment_btn m-1">Comment</button>
                     </div>
                     <hr>
+                    <div class="comment_container">
+
+                    </div>
                 </div>
             </div>
         </div>
