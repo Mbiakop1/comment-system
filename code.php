@@ -7,7 +7,7 @@ include_once "./includes/config.php";
 
 // add  replies
 if(isset($_POST['add_subreplies'])){
-    $cmt_id = $_POST['comment_id'];
+    $cmt_id = $_POST['cmt_id'];
     $reply_msg = $_POST['reply_msg'];
     $user_id = $_SESSION['user_id'];
     $date = date('Y-m-d H:i:s');
@@ -42,7 +42,7 @@ if(isset($_POST['view_comment_data'])){
          header('Content-type: application/json');
            echo json_encode($result_array);
       } else {
-          echo "No replies yet";
+          echo json_encode($result_array);
       }
 }
 

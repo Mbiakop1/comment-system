@@ -16,13 +16,15 @@ $(document).ready(function() {
                 $.each(response, function(key, value) {
 
                     $('.comment_container').
-                    append('<div class="reply_box border p-2 mb-2">\
+                    append('<div class="c" id="k"> <span onClick="myFunction(event)" id="click" class="cli"> click to toggle</span>\
+                    <div id="hi" class="reply_box border p-2 mb-2">\
                             <h6 class="username border-bottom d-inline">' + value.user['name'] + '  : ' + '</h6> <span>' + value.cmt['date'] + '</span>\
                             <p class="para">' + value.cmt['comment'] + '</p>\
                             <button value="' + value.cmt['id'] + '" class="badge btn-warning reply_btn">Reply</button>\
                             <button value="' + value.cmt['id'] + '" class="badge btn-danger view_reply_btn">View Replies</button>\
                             <div class="ml-10 reply_section">\
                             </div>\
+                        </div>\
                         </div>\
                         ');
                 });
@@ -142,8 +144,9 @@ $(document).ready(function() {
     $(document).on('click', '.sub_reply_add_btn', function(e) {
         e.preventDefault();
         var thisClicked = $(this);
-        var cmt_id = thisClicked.closest('.sub_reply_box').find('sub_reply_btn').val();
-        var reply = thisClicked.closest('.sub_reply_box').find('sub_reply_msg').val();
+        var cmt_id = thisClicked.closest('.sub_reply_box').find('.sub_reply_btn').val();
+        var reply = thisClicked.closest('.sub_reply_box').find('.sub_reply_msg').val();
+
 
         var data = {
             'cmt_id': cmt_id,
@@ -157,13 +160,14 @@ $(document).ready(function() {
             data: data,
             success: function(response) {
                 alert(response);
+                $('.reply_section').html("");
             }
         })
 
     })
 
 
-    // cancel reply////////////////////
+    // cancel reply///////////////////
     $(document).on('click', '.sub_reply_cancel_btn', function(e) {
 
         e.preventDefault();
@@ -208,3 +212,10 @@ $(document).ready(function() {
         }
     });
 });
+
+// toggle classlist
+
+var myFunction = (e) => {
+    var div = e.target.closest("#k").querySelector("#hi");
+    div.classList.toggle("show");
+}

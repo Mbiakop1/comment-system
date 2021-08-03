@@ -8,6 +8,19 @@ include_once "./includes/navbar.php";
 .sub_reply_section {
     margin-left: 10px !important;
 }
+
+.reply_box {
+    display: none;
+}
+
+.cli {
+    cursor: pointer;
+    margin: 10px;
+}
+
+.show {
+    display: initial;
+}
 </style>
 
 <?php
