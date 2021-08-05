@@ -22,6 +22,8 @@ $(document).ready(function() {
                             <p class="para">' + value.cmt['comment'] + '</p>\
                             <button value="' + value.cmt['id'] + '" class="badge btn-warning reply_btn">Reply</button>\
                             <button value="' + value.cmt['id'] + '" class="badge btn-danger view_reply_btn">View Replies</button>\
+                            <input type="hidden" value="' + value.user['email'] + '" id="mail"/>\
+                            <input type="hidden" value="' + value.cmt['comment'] + '" id="para"/>\
                             <div class="ml-10 reply_section">\
                             </div>\
                         </div>\
@@ -59,12 +61,17 @@ $(document).ready(function() {
         var thisClicked = $(this);
         var cmt_id = thisClicked.closest('.reply_box').find('.reply_btn').val();
         var reply = thisClicked.closest('.reply_box').find('.reply_msg').val();
+        var user_cmt_email = thisClicked.closest('.reply_box').find('#mail').val();
+        var cmt_body = thisClicked.closest('.reply_box').find('#para').val();
+
 
 
         var data = {
             'comment_id': cmt_id,
             'reply_msg': reply,
-            'add_reply': true
+            'add_reply': true,
+            'cmt_email': user_cmt_email,
+            'cmt_body': cmt_body,
         }
 
         $.ajax({

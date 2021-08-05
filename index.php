@@ -9,18 +9,23 @@ include_once "./includes/navbar.php";
     margin-left: 10px !important;
 }
 
-.reply_box {
+/* for toggling reply box */
+/* .reply_box {
     display: none;
-}
+} */
+/* for toggling reply box */
+
 
 .cli {
     cursor: pointer;
     margin: 10px;
 }
 
-.show {
+/* for toggling reply box */
+/* .show {
     display: initial;
-}
+} */
+/* for toggling reply box */
 </style>
 
 <?php
@@ -67,5 +72,8 @@ unset($_SESSION['status']);
     </div>
 </div>
 
+<div class="notif">
+    Good morning your comment has been replied
+</div>
 
 <?php include_once "./includes/footer.php" ?>

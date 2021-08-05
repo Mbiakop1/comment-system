@@ -2,9 +2,6 @@
 session_start();
 include_once "./includes/config.php";
 
-
-
-
 // add  replies
 if(isset($_POST['add_subreplies'])){
     $cmt_id = $_POST['cmt_id'];
@@ -54,11 +51,53 @@ if(isset($_POST['add_reply'])){
     $reply = $_POST['reply_msg'];
     $user_id = $_SESSION['user_id'];
     $date = date('Y-m-d H:i:s');
-
+    $cmt_email = $_POST['cmt_email'];
+    $cmt_body = $_POST['cmt_body'];
+    
     $sql = "INSERT INTO replies VALUES ('', '$user_id', '$cmt_id', '$reply', '$date')";
+
      // use exec() because no results are returned
      $con->exec($sql);
-    echo "Reply created  successfully";
+
+     if($user_id == 1){
+         require_once("assests/PHPMailer/PHPMailer.php");
+        require_once("assests/PHPMailer/SMTP.php");
+         
+         
+                $name = "Mbiakop clinton";
+               
+                $subject = "comment replied";
+                $message = "Dear user this message is to notify you that your comment" . "<br>" . $cmt_body . "<br>" . " has been replied by $name" ;
+                
+                
+                
+                $mail = new PHPMailer\PHPMailer\PHPMailer();
+                $mail->IsSMTP(); // enable SMTP
+        
+                $mail->SMTPDebug = 0; // debugging: 1 = errors and messages, 2 = messages only
+                $mail->SMTPAuth = true; // authentication enabled
+                $mail->SMTPSecure = 'ssl'; // secure transfer enabled REQUIRED for Gmail
+                $mail->Host = "smtp.gmail.com";
+                $mail->Port = 465; // or 587
+                $mail->IsHTML(true);
+                $mail->Username = "mbutiji1@gmail.com";  
+                $mail->Password = "developer-8081";  
+                $mail->SetFrom($cmt_email, $name);
+                $mail->Subject = $subject;
+                $mail->Body = $message;
+                $mail->AddAddress($cmt_email); 
+                
+                if(!$mail->Send()) {
+                    echo "Mailer Error: " . $mail->ErrorInfo;
+        } else {
+         
+        }
+        
+        
+     } 
+
+
+    echo "Reply created  successfully " . $cmt_body;
 
 }
 
